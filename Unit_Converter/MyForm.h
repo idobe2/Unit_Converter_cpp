@@ -1,4 +1,5 @@
 #pragma once
+#include "Metric.h"
 
 namespace UnitConverter {
 
@@ -59,8 +60,9 @@ namespace UnitConverter {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ComboBox^ comboBoxTo;
+	private: System::Windows::Forms::Button^ buttonMetric;
 
-	private: System::Windows::Forms::Button^ button1;
+
 
 	private:
 		/// <summary>
@@ -91,7 +93,7 @@ namespace UnitConverter {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->comboBoxTo = (gcnew System::Windows::Forms::ComboBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->buttonMetric = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -234,22 +236,22 @@ namespace UnitConverter {
 			this->comboBoxTo->TabIndex = 14;
 			this->comboBoxTo->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox2_SelectedIndexChanged);
 			// 
-			// button1
+			// buttonMetric
 			// 
-			this->button1->Location = System::Drawing::Point(214, 125);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 35);
-			this->button1->TabIndex = 16;
-			this->button1->Text = L"Metric";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
+			this->buttonMetric->Location = System::Drawing::Point(214, 125);
+			this->buttonMetric->Name = L"buttonMetric";
+			this->buttonMetric->Size = System::Drawing::Size(75, 35);
+			this->buttonMetric->TabIndex = 16;
+			this->buttonMetric->Text = L"Metric";
+			this->buttonMetric->UseVisualStyleBackColor = true;
+			this->buttonMetric->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(500, 500);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->buttonMetric);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->comboBoxTo);
 			this->Controls->Add(this->label4);
@@ -296,6 +298,7 @@ private: System::Void label5_Click_1(System::Object^ sender, System::EventArgs^ 
 private: System::Void comboBox2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
