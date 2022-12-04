@@ -342,15 +342,31 @@ private: System::Void button1_Click_2(System::Object^ sender, System::EventArgs^
 	/*String^ tag = gcnew String(this->buttonConvert->Tag->ToString());
 	if (tag->CompareTo("Metric"))
 	{*/
-		this->buttonConvert->BackColor.Black;
-		Metric metric;
-		float input = (float)(Convert::ToDouble(textBoxFrom->Text));
+	Metric metric;
+	String^ i1 = textBoxFrom->Text;
+	//try {
+		float input = (float)(Convert::ToDouble(i1));
+	//}
+	//catch (FormatException) {
+		// handle format error exception here
+	//}
+	//catch (OverflowException) {
+		// handle overflow exception here
+	//}
+		std::string stringPart = "ABC";
+		int intPart = input;
+		String^ msg = String::Concat("Message", msclr::interop::marshal_as<System::String^>(stringPart));
+		msg = String::Concat(msg, intPart);
+		MessageBox::Show(msg);
 		metric.setNum(input);
 		msclr::interop::marshal_context context;
 		std::string source = context.marshal_as<std::string>(this->comboBoxFrom->Text);
 		std::string dest = context.marshal_as<std::string>(this->comboBoxTo->Text);
 		metric.convert(source, dest, metric.getNum());
 		textBoxTo->Text = (String^)(Convert::ToString(metric.convert(source, dest, metric.getNum())));
+		
+		
+		
 	}
 };
 }
