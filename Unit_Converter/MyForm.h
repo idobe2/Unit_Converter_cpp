@@ -1,6 +1,8 @@
 #pragma once
 #include "Metric.h"
 
+using namespace std;
+
 namespace UnitConverter {
 
 	using namespace System;
@@ -61,6 +63,7 @@ namespace UnitConverter {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ComboBox^ comboBoxTo;
 	private: System::Windows::Forms::Button^ buttonMetric;
+	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
 
 
 
@@ -94,6 +97,7 @@ namespace UnitConverter {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->comboBoxTo = (gcnew System::Windows::Forms::ComboBox());
 			this->buttonMetric = (gcnew System::Windows::Forms::Button());
+			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -102,21 +106,23 @@ namespace UnitConverter {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Calibri", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(127, 36);
+			this->label1->Location = System::Drawing::Point(169, 44);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(245, 26);
+			this->label1->Size = System::Drawing::Size(312, 33);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Welcome to Unit Convertor";
 			// 
 			// menuStrip1
 			// 
+			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->fileToolStripMenuItem,
 					this->viewToolStripMenuItem, this->helpToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(500, 24);
+			this->menuStrip1->Size = System::Drawing::Size(667, 28);
 			this->menuStrip1->TabIndex = 1;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -127,68 +133,71 @@ namespace UnitConverter {
 					this->exitToolStripMenuItem
 			});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
-			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
+			this->fileToolStripMenuItem->Size = System::Drawing::Size(46, 24);
 			this->fileToolStripMenuItem->Text = L"File";
 			// 
 			// aToolStripMenuItem
 			// 
 			this->aToolStripMenuItem->Name = L"aToolStripMenuItem";
-			this->aToolStripMenuItem->Size = System::Drawing::Size(107, 22);
+			this->aToolStripMenuItem->Size = System::Drawing::Size(133, 26);
 			this->aToolStripMenuItem->Text = L"About";
 			this->aToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::aToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(107, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(133, 26);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			// 
 			// viewToolStripMenuItem
 			// 
 			this->viewToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->darkModeToolStripMenuItem });
 			this->viewToolStripMenuItem->Name = L"viewToolStripMenuItem";
-			this->viewToolStripMenuItem->Size = System::Drawing::Size(44, 20);
+			this->viewToolStripMenuItem->Size = System::Drawing::Size(55, 24);
 			this->viewToolStripMenuItem->Text = L"View";
 			// 
 			// darkModeToolStripMenuItem
 			// 
 			this->darkModeToolStripMenuItem->Name = L"darkModeToolStripMenuItem";
-			this->darkModeToolStripMenuItem->Size = System::Drawing::Size(132, 22);
+			this->darkModeToolStripMenuItem->Size = System::Drawing::Size(166, 26);
 			this->darkModeToolStripMenuItem->Text = L"Dark Mode";
 			// 
 			// helpToolStripMenuItem
 			// 
 			this->helpToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->aboutToolStripMenuItem });
 			this->helpToolStripMenuItem->Name = L"helpToolStripMenuItem";
-			this->helpToolStripMenuItem->Size = System::Drawing::Size(44, 20);
+			this->helpToolStripMenuItem->Size = System::Drawing::Size(55, 24);
 			this->helpToolStripMenuItem->Text = L"Help";
 			// 
 			// aboutToolStripMenuItem
 			// 
 			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
-			this->aboutToolStripMenuItem->Size = System::Drawing::Size(107, 22);
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(133, 26);
 			this->aboutToolStripMenuItem->Text = L"About";
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(16, 125);
+			this->textBox1->Location = System::Drawing::Point(21, 154);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(130, 20);
+			this->textBox1->Size = System::Drawing::Size(172, 22);
 			this->textBox1->TabIndex = 2;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(358, 125);
+			this->textBox2->Location = System::Drawing::Point(477, 154);
+			this->textBox2->Margin = System::Windows::Forms::Padding(4);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(130, 20);
+			this->textBox2->Size = System::Drawing::Size(172, 22);
 			this->textBox2->TabIndex = 4;
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(388, 463);
+			this->button4->Location = System::Drawing::Point(517, 570);
+			this->button4->Margin = System::Windows::Forms::Padding(4);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(100, 25);
+			this->button4->Size = System::Drawing::Size(133, 31);
 			this->button4->TabIndex = 11;
 			this->button4->Text = L"Exit";
 			this->button4->UseVisualStyleBackColor = true;
@@ -197,9 +206,10 @@ namespace UnitConverter {
 			// comboBoxFrom
 			// 
 			this->comboBoxFrom->FormattingEnabled = true;
-			this->comboBoxFrom->Location = System::Drawing::Point(16, 151);
+			this->comboBoxFrom->Location = System::Drawing::Point(21, 186);
+			this->comboBoxFrom->Margin = System::Windows::Forms::Padding(4);
 			this->comboBoxFrom->Name = L"comboBoxFrom";
-			this->comboBoxFrom->Size = System::Drawing::Size(121, 21);
+			this->comboBoxFrom->Size = System::Drawing::Size(160, 24);
 			this->comboBoxFrom->TabIndex = 12;
 			this->comboBoxFrom->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox1_SelectedIndexChanged);
 			// 
@@ -208,9 +218,10 @@ namespace UnitConverter {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Calibri", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(12, 98);
+			this->label4->Location = System::Drawing::Point(16, 121);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(56, 23);
+			this->label4->Size = System::Drawing::Size(70, 29);
 			this->label4->TabIndex = 13;
 			this->label4->Text = L"From:";
 			this->label4->Click += gcnew System::EventHandler(this, &MyForm::label4_Click_1);
@@ -220,9 +231,10 @@ namespace UnitConverter {
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Calibri", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(354, 98);
+			this->label5->Location = System::Drawing::Point(472, 121);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(32, 23);
+			this->label5->Size = System::Drawing::Size(42, 29);
 			this->label5->TabIndex = 15;
 			this->label5->Text = L"To:";
 			this->label5->Click += gcnew System::EventHandler(this, &MyForm::label5_Click_1);
@@ -230,27 +242,33 @@ namespace UnitConverter {
 			// comboBoxTo
 			// 
 			this->comboBoxTo->FormattingEnabled = true;
-			this->comboBoxTo->Location = System::Drawing::Point(358, 151);
+			this->comboBoxTo->Location = System::Drawing::Point(477, 186);
+			this->comboBoxTo->Margin = System::Windows::Forms::Padding(4);
 			this->comboBoxTo->Name = L"comboBoxTo";
-			this->comboBoxTo->Size = System::Drawing::Size(121, 21);
+			this->comboBoxTo->Size = System::Drawing::Size(160, 24);
 			this->comboBoxTo->TabIndex = 14;
 			this->comboBoxTo->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox2_SelectedIndexChanged);
 			// 
 			// buttonMetric
 			// 
-			this->buttonMetric->Location = System::Drawing::Point(214, 125);
+			this->buttonMetric->Location = System::Drawing::Point(285, 154);
+			this->buttonMetric->Margin = System::Windows::Forms::Padding(4);
 			this->buttonMetric->Name = L"buttonMetric";
-			this->buttonMetric->Size = System::Drawing::Size(75, 35);
+			this->buttonMetric->Size = System::Drawing::Size(100, 43);
 			this->buttonMetric->TabIndex = 16;
 			this->buttonMetric->Text = L"Metric";
 			this->buttonMetric->UseVisualStyleBackColor = true;
 			this->buttonMetric->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
 			// 
+			// backgroundWorker1
+			// 
+			this->backgroundWorker1->DoWork += gcnew System::ComponentModel::DoWorkEventHandler(this, &MyForm::backgroundWorker1_DoWork);
+			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(500, 500);
+			this->ClientSize = System::Drawing::Size(667, 615);
 			this->Controls->Add(this->buttonMetric);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->comboBoxTo);
@@ -262,6 +280,7 @@ namespace UnitConverter {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
@@ -298,9 +317,18 @@ private: System::Void label5_Click_1(System::Object^ sender, System::EventArgs^ 
 private: System::Void comboBox2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	
+	Metric metric;
+	std::vector<std::string> list = metric.getList();
+	for (int i = 0; i < list.size(); i++) {
+		String^ newSystemString = gcnew String(list[i].c_str());
+		comboBoxFrom->Items->Add(newSystemString);
+		comboBoxTo->Items->Add(newSystemString);
+	}
+
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void backgroundWorker1_DoWork(System::Object^ sender, System::ComponentModel::DoWorkEventArgs^ e) {
 }
 };
 }
