@@ -344,7 +344,7 @@ private: System::Void button1_Click_2(System::Object^ sender, System::EventArgs^
 	{*/
 		this->buttonConvert->BackColor.Black;
 		Metric metric;
-		float input = (float)(Convert::ToDouble(textBoxFrom->Text) * 4.35);
+		float input = (float)(Convert::ToDouble(textBoxFrom->Text));
 		metric.setNum(input);
 		msclr::interop::marshal_context context;
 		std::string source = context.marshal_as<std::string>(this->comboBoxFrom->Text);

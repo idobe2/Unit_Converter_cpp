@@ -34,37 +34,46 @@ std::vector<std::string> Metric::getList() {
 }
 
 int Metric::convert(string source, string dest, int number) {
-	for (int i=0; i<list.size(); i++)
-		if (source.compare(list[i]))
-		{
-			switch (i)
-			{
-			case 0: // mm -> cm
-				setNum(getNum() / 10);
-			case 2: // dm -> cm
-				setNum(getNum() * 10);
-			case 3: // m -> cm
-				setNum(getNum() * 100);
-			default:
-				return getNum();
-			}
-			break;
-		}
-	for (int i = 0; i < list.size(); i++)
-		if (dest.compare(list[i]))
-		{
-			switch (i)
-			{
-			case 0: // cm -> mm
-				setNum(getNum() * 10);
-			case 2: // cm -> dm
-				setNum(getNum() / 10);
-			case 3: // cm -> m
-				setNum(getNum() / 100);
-			default:
-				return getNum();;
-			}
-			break;
-		}
+	if (source.compare(list[0]))
+		if (dest.compare(list[1]))
+			return 5;
+	//for (int i=0; i<list.size(); i++)
+	//	if (source.compare(list[i]))
+	//	{
+	//		switch (i)
+	//		{
+	//		case 0: // mm -> cm
+	//			setNum(getNum() / 10);
+	//			break;
+	//		case 2: // dm -> cm
+	//			setNum(getNum() * 10);
+	//			break;
+	//		case 3: // m -> cm
+	//			setNum(getNum() * 100);
+	//			break;
+	//		default:
+	//			break;
+	//		}
+	//		break;
+	//	}
+	//for (int i = 0; i < list.size(); i++)
+	//	if (dest.compare(list[i]))
+	//	{
+	//		switch (i)
+	//		{
+	//		case 0: // cm -> mm
+	//			setNum(getNum() * 10);
+	//			break;
+	//		case 2: // cm -> dm
+	//			setNum(getNum() / 10);
+	//			break;
+	//		case 3: // cm -> m
+	//			setNum(getNum() / 100);
+	//			break;
+	//		default:
+	//			break;
+	//		}
+	//		break;
+	//	}
 	return getNum();
 }
